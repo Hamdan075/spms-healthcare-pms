@@ -1,0 +1,1 @@
+{"name":"spms","private":true,"scripts":{"setup":"npm install --prefix server && npm install --prefix client","seed":"npm run seed --prefix server","server":"npm start --prefix server","client":"npm run dev --prefix client","test":"npm test --prefix server"},"dependencies":{"docx":"^9.14.0"}}

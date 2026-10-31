@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Midterm Lab Report - Smart Healthcare Project Management System</title>
+  <style>
+    /* -------------------------------------------------------------
+       Academic Lab Report Stylesheet (A4 Multi-page Double Border)
+       ------------------------------------------------------------- */
+    @page {
+      size: A4 portrait;
+      margin: 10mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #eef2f5;
+      font-family: 'Times New Roman', Times, Georgia, serif;
+      color: #111;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    /* Floating Interactive Controls (Hidden on Print) */
+    .no-print-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: #14303a;
+      color: #fff;
+      padding: 12px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .no-print-toolbar .inputs {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .no-print-toolbar label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+    }
+
+    .no-print-toolbar input {
+      padding: 5px 8px;
+      border-radius: 4px;
+      border: 1px solid #7aa8d0;
+      font-size: 13px;
+      color: #14303a;
+      font-weight: 500;
+    }
+
+    .no-print-toolbar .actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .no-print-toolbar .btn {
+      color: #fff;
+      border: 0;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 13.5px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .btn-docx {
+      background: #185a9d;
+    }
+    .btn-docx:hover {
+      background: #2072c4;
+      transform: translateY(-1px);
+    }
+
+    .btn-doc {
+      background: #28508f;
+    }
+    .btn-doc:hover {
+      background: #376ab9;
+      transform: translateY(-1px);
+    }
+
+    .btn-pdf {
+      background: #1b7a6e;
+    }
+    .btn-pdf:hover {
+      background: #259d8e;
+      transform: translateY(-1px);
+    }
+
+    /* A4 Page Container */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 20px auto;
+      padding: 18mm 18mm 20mm;
+      background: #fff;
+      border: 4px double #111;
+      position: relative;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    /* Header & Footer */
+    .page-header {
+      text-align: center;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding-bottom: 8px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .page-footer {
+      position: absolute;
+      bottom: 12mm;
+      right: 18mm;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .page-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Typography & Academic Headings */
+    h1, h2, h3, h4, p {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    h2 {
+      font-size: 17px;
+      margin: 12px 0 6px;
+      border-bottom: 1.5px solid #222;
+      padding-bottom: 3px;
+    }
+
+    h3 {
+      font-size: 15px;
+      margin: 10px 0 4px;
+    }
+
+    p {
+      margin-bottom: 8px;
+      text-align: justify;
+    }
+
+    ul {
+      margin: 4px 0 10px 18px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 4px;
+      text-align: justify;
+    }
+
+    .checkmark-list {
+      list-style: none;
+      margin-left: 0;
+      padding-left: 0;
+    }
+
+    .checkmark-list li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 6px;
+      text-align: justify;
+    }
+
+    .checkmark-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: bold;
+      color: #111;
+    }
+
+    /* Screenshots & Figures */
+    .figure-box {
+      margin: 10px 0 14px;
+      text-align: center;
+    }
+
+    .figure-box img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #777;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      border-radius: 2px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .figure-caption {
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 5px;
+      color: #333;
+    }
+
+    /* Tables */
+    table.report-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 12px;
+      font-size: 12.5px;
+    }
+
+    table.report-table th,
+    table.report-table td {
+      border: 1px solid #444;
+      padding: 6px 8px;
+      text-align: left;
+    }
+
+    table.report-table th {
+      background: #eef2f3;
+      font-weight: bold;
+    }
+
+    /* Cover Page Specific Styles */
+    .cover-page {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 30mm 20mm;
+    }
+
+    .cover-logo {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 20px;
+    }
+
+    .cover-title-univ {
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .cover-campus {
+      font-size: 19px;
+      font-weight: bold;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 35px;
+    }
+
+    .cover-credentials-grid {
+      width: 100%;
+      max-width: 460px;
+      margin: 0 auto;
+      text-align: left;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .cover-field-row {
+      margin-bottom: 14px;
+    }
+
+    .cover-label {
+      font-weight: bold;
+      text-decoration: underline;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .cover-value {
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      padding-left: 20px;
+    }
+
+    /* Code Snippets */
+    pre.code-block {
+      background: #f7f9fa;
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 11.5px;
+      overflow-x: auto;
+      margin: 6px 0 10px;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+      .no-print-toolbar {
+        display: none !important;
+      }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        border: 4px double #000;
+        page-break-after: always;
+        height: 297mm;
+        overflow: hidden;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Print, Word Export & Customization Toolbar -->
+  <div class="no-print-toolbar">
+    <div class="inputs">
+      <label>Student Name: <input type="text" id="inp-name" value="M. Hamda" placeholder="Enter Full Name"></label>
+      <label>Reg #: <input type="text" id="inp-reg" value="FA23-BSE-000" placeholder="FA23-BSE-XXX"></label>
+      <label>Section: <input type="text" id="inp-sec" value="FA23-BSE-7B" placeholder="FA23-BSE-7B"></label>
+      <label>Date: <input type="text" id="inp-date" value="26-10-2026"></label>
+    </div>
+    <div class="actions">
+      <!-- 1. Download Compiled Word Document (.docx) -->
+      <a href="MIDTERM_LAB_REPORT.docx" download="MIDTERM_LAB_REPORT.docx" class="btn btn-docx" id="btn-download-docx" title="Download official compiled Microsoft Word document with embedded high-resolution figures">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Save as Word (.docx)
+      </a>
+
+      <!-- 2. Live Export to Word (.doc) with user inputs -->
+      <button onclick="exportToWord()" class="btn btn-doc" id="btn-export-doc" title="Export current report state to Word document (.doc)">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        Export Live (.doc)
+      </button>
+
+      <!-- 3. Print / Save as PDF -->
+      <button onclick="window.print()" class="btn btn-pdf" id="btn-print" title="Print document or save as PDF">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2m-10 0v4h8v-4M8 12h.01"/></svg>
+        Print / PDF
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 1: COVER PAGE
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content cover-page">
+
+      <!-- Official COMSATS Logo (High-Fidelity SVG) -->
+      <svg class="cover-logo" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="95" fill="#14303a" stroke="#1b7a6e" stroke-width="4"/>
+        <circle cx="100" cy="100" r="78" fill="none" stroke="#e8f1ef" stroke-width="2" stroke-dasharray="4,2"/>
+        <!-- Globe latitude/longitude -->
+        <ellipse cx="100" cy="100" rx="60" ry="60" fill="none" stroke="#7aa8d0" stroke-width="2"/>
+        <ellipse cx="100" cy="100" rx="35" ry="60" fill="none" stroke="#7aa8d0" stroke-width="2"/>
+        <line x1="40" y1="100" x2="160" y2="100" stroke="#7aa8d0" stroke-width="2"/>
+        <line x1="48" y1="75" x2="152" y2="75" stroke="#7aa8d0" stroke-width="1.5"/>
+        <line x1="48" y1="125" x2="152" y2="125" stroke="#7aa8d0" stroke-width="1.5"/>
+        <!-- Ribbon / Text Ring -->
+        <text x="100" y="28" fill="#e8f1ef" font-size="12" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle" letter-spacing="2">COMSATS</text>
+        <text x="100" y="185" fill="#e8f1ef" font-size="11" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle" letter-spacing="3">ISLAMABAD</text>
+      </svg>
+
+      <div class="cover-title-univ">“COMSATS UNIVERSITY ISLAMABAD</div>
+      <div class="cover-campus">SAHIWAL CAMPUS.”</div>
+
+      <div class="cover-credentials-grid">
+        <div class="cover-field-row">
+          <span class="cover-label">NAME:</span>
+          <span class="cover-value" id="disp-name">M. HAMDA.</span>
+        </div>
+        <div class="cover-field-row">
+          <span class="cover-label">REG #:</span>
+          <span class="cover-value" id="disp-reg">FA23-BSE-000.</span>
+        </div>
+        <div class="cover-field-row">
+          <span class="cover-label">SECTION:</span>
+          <span class="cover-value" id="disp-sec">FA23-BSE-7B.</span>
+        </div>
+        <div class="cover-field-row">
+          <span class="cover-label">SUBJECT:</span>
+          <span class="cover-value">SOFTWARE PROJECT MANAGEMENT.</span>
+        </div>
+        <div class="cover-field-row">
+          <span class="cover-label">SUBMITTED TO:</span>
+          <span class="cover-value">SIR BILAL SHABEER QASIR.</span>
+        </div>
+        <div class="cover-field-row">
+          <span class="cover-label">SUBMISSION DATE:</span>
+          <span class="cover-value" id="disp-date">26-10-2026.</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="page-footer">1</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 2: CASE STUDY & MODULE 1 INTRO
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h2>Case Study: Smart Healthcare Project Management and Monitoring System</h2>
+      <p>
+        A software development company has been contracted to develop a Smart Healthcare Project Management System for a network of five hospitals. The system must manage patient appointments, laboratory reports, doctor schedules, online consultations, and hospital billing. The project must be completed within 16 weeks, with a maximum approved budget of PKR 5,000,000.
+      </p>
+      <p>
+        The development team consists of a project manager, two backend developers, two frontend developers, one database developer, and one quality assurance engineer. During development, hospital management introduces additional requirements, including an AI-based preliminary diagnosis module and a mobile application. These changes increase the estimated project cost by PKR 800,000 and the development duration by three weeks. Furthermore, testing reveals critical defects in appointment scheduling and patient record management. The company requires a software-based solution to plan, execute, monitor, and control the project while managing scope changes, schedule delays, budget overruns, and quality issues.
+      </p>
+
+      <h2>Question 1: (25 Marks)</h2>
+      <p>
+        Develop a complete, working Software Project Management System that allows the project manager to manage the healthcare software development project through an interactive graphical user interface and a database.
+      </p>
+
+      <h2>1. Project Initiation and Integration Management (4 Marks)</h2>
+      <h3>Create and manage the project charter, including project objectives, stakeholders, scope boundaries, approved budget, and deadline.</h3>
+
+      <ul class="checkmark-list">
+        <li>The Project Charter defines the objectives, stakeholders, scope boundaries, approved budget, and deadlines of the Smart Healthcare Project Management and Monitoring System.</li>
+        <li>The main objective of this project is to improve the management of patient appointments, laboratory reports, doctor schedules, online consultations, and hospital billing across five hospitals.</li>
+        <li>The project has an approved budget of PKR 5,000,000 and a planned duration of 16 weeks (starting 2026-08-31 to 2026-12-21).</li>
+        <li>The major stakeholders include Hospital Network Management (Sponsor), Doctors & Consultants, Laboratory Staff, Billing Department, and Patients.</li>
+        <li>Clear scope boundaries are documented: in-scope features encompass core hospital services, while unapproved scope items (AI diagnosis and mobile app) remain excluded until formal approval.</li>
+      </ul>
+    </div>
+    <div class="page-footer">2</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 3: MODULE 1 - CHARTER FORM & PM PLAN
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <div class="figure-box">
+        <img src="report_assets/charter_top.png" alt="Project Charter Interface">
+        <div class="figure-caption">Figure 1.1: Project Charter Form with Approved Budget (PKR 5,000,000), Deadlines, Scope In/Out, and Stakeholders.</div>
+      </div>
+
+      <h3>Develop a project management plan containing project scope, schedule, cost, and quality information.</h3>
+      <ul class="checkmark-list">
+        <li>The Project Management Plan describes how the project will be planned, executed, monitored, and controlled throughout its life cycle.</li>
+        <li>It includes integrated sub-plans for scope baseline management, schedule tracking via Critical Path Method (CPM), cost control with Earned Value Management (EVM), and quality assurance checklists.</li>
+        <li>The project scope defines the system features, the schedule establishes the 16-week baseline, the cost plan manages bottom-up activity estimates against the PKR 5,000,000 budget, and the quality plan verifies zero unresolved critical defects before handover.</li>
+        <li>These plans provide the foundation for comparing planned versus actual progress during execution.</li>
+      </ul>
+    </div>
+    <div class="page-footer">3</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 4: MODULE 1 - PM PLAN & PERSISTENCE
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h2>Project Management Plan Details</h2>
+      <p>
+        The integrated plan ensures that all five hospitals receive consistent, unified modules. The system stores the plan programmatically in MongoDB under the <code>projects</code> collection:
+      </p>
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Plan Dimension</th>
+            <th>Baseline Plan Specification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Scope Plan</strong></td>
+            <td>Scope baseline consists of approved requirements only. Any additional feature must proceed through formal change control.</td>
+          </tr>
+          <tr>
+            <td><strong>Schedule Plan</strong></td>
+            <td>16 weeks duration, 12 planned activities, forward/backward pass CPM, weekly schedule reviews with delay propagation.</td>
+          </tr>
+          <tr>
+            <td><strong>Cost Plan</strong></td>
+            <td>PKR 5,000,000 approved budget built bottom-up from activity estimates; EVM indicators monitored weekly.</td>
+          </tr>
+          <tr>
+            <td><strong>Quality Plan</strong></td>
+            <td>Checklist inspections per deliverable; zero critical defects at release; CPI/SPI warning thresholds set at 0.9 and 0.8.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="figure-box">
+        <img src="report_assets/charter_bottom.png" alt="Project Management Plan and Closure">
+        <div class="figure-caption">Figure 1.2: Project Management Plan details, Team Responsibilities, Milestones, and Closure Record Section.</div>
+      </div>
+    </div>
+    <div class="page-footer">4</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 5: MODULE 1 - MILESTONES & RESPONSIBILITIES
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h2>Maintain project status, milestones, responsibilities, and project closure records.</h2>
+      <ul class="checkmark-list">
+        <li>The system maintains project status, milestones, and assigned responsibilities to support project monitoring and control across the 7-person team.</li>
+        <li>Milestones represent pivotal checkpoints: Charter Approved (Done), Design Complete (Done), Core Modules Complete, Integration Complete, UAT Sign-off, and Go-live.</li>
+        <li>Responsibilities are assigned according to team roles: Project Manager, 2 Backend Developers, 2 Frontend Developers, 1 Database Developer, and 1 QA Engineer.</li>
+        <li>Assigned team members are verified by the API when activities and defects are created, enforcing accountability.</li>
+      </ul>
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Member</th>
+            <th>Role</th>
+            <th>Assigned Responsibility</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Ayesha Khan</td><td>Project Manager</td><td>Planning, risk management, stakeholder reporting, UAT</td></tr>
+          <tr><td>Usman Tariq</td><td>Backend Developer</td><td>Appointment scheduling module, billing module</td></tr>
+          <tr><td>Bilal Ahmed</td><td>Backend Developer</td><td>Patient records, lab reports, system integration</td></tr>
+          <tr><td>Sara Malik</td><td>Frontend Developer</td><td>UI/UX design, doctor & patient portals</td></tr>
+          <tr><td>Hassan Raza</td><td>Frontend Developer</td><td>Admin portal, report generation</td></tr>
+          <tr><td>Zainab Ali</td><td>Database Developer</td><td>Database design, schema normalization, data migration</td></tr>
+          <tr><td>Omar Farooq</td><td>QA Engineer</td><td>Test plans, quality checklist inspection, defect tracking</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="page-footer">5</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 6: MODULE 1 - CLOSURE VALIDATION
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h2>Project Closure Enforcement & Integrity Rules</h2>
+      <ul class="checkmark-list">
+        <li>Project closure records document the final outcome, lessons learned, and handover verification.</li>
+        <li><strong>Strict Business Rule Enforced:</strong> The system strictly blocks closing the project while critical defects remain open or activities are unfinished.</li>
+        <li>If an administrator attempts to mark the project as closed while defects exist, the backend rejects the request with HTTP 409:
+          <pre class="code-block">Error 409: Project cannot be closed: 2 critical defect(s) are unresolved</pre>
+        </li>
+        <li>This ensures that healthcare deliverables cannot be handed over with unresolved scheduling or data synchronization issues.</li>
+      </ul>
+
+      <div class="figure-box">
+        <img src="report_assets/charter_bottom.png" alt="Closure Record Section">
+        <div class="figure-caption">Figure 1.3: Project Closure section with validation preventing early closure while defects remain active.</div>
+      </div>
+    </div>
+    <div class="page-footer">6</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 7: MODULE 2 - SCOPE & REQUIREMENTS
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h2>2. Scope Management and WBS (4 Marks)</h2>
+      <h3>Implement a requirements management module to add, update, prioritize, and approve project requirements.</h3>
+      <ul class="checkmark-list">
+        <li>Requirements are managed through an interactive CRUD table supporting priorities (High, Medium, Low) and approval states (Proposed, Approved, Rejected).</li>
+        <li>Core hospital requirements (R1: Appointments, R2: Lab Reports, R3: Doctor Schedules, R4: Consultations, R5: Billing, R6: Multi-Hospital RBAC) are initialized as Approved.</li>
+        <li>Hospital management's new requests (R7: AI Diagnosis, R8: Mobile Application) begin as <strong>Proposed</strong> and are strictly excluded from the approved scope baseline until formally authorized through a change request.</li>
+      </ul>
+
+      <div class="figure-box">
+        <img src="report_assets/scope_reqs_wbs.png" alt="Requirements Management and WBS">
+        <div class="figure-caption">Figure 2.1: Requirements Management register displaying priority, approval status, and in-scope eligibility.</div>
+      </div>
+    </div>
+    <div class="page-footer">7</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 8: MODULE 2 - HIERARCHICAL WBS TREE
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h3>Generate a hierarchical Work Breakdown Structure (WBS) for project deliverables and work packages.</h3>
+      <ul class="checkmark-list">
+        <li>The system decomposes project scope into a hierarchical tree of Deliverables (Levels 1, 2, 3) and terminal Work Packages (1.1, 1.2, 2.1, etc.).</li>
+        <li>Each Work Package is explicitly tied to an approved requirement, establishing 100% scope traceability.</li>
+        <li>The recursive WBS tree view renders parent-child relationships dynamically:</li>
+      </ul>
+
+      <pre class="code-block">
+1 Planning and Design [Deliverable]
+  ├── 1.1 Requirements analysis and SRS [Work Package] -> covers R6
+  ├── 1.2 System and database design [Work Package] -> covers R6
+  └── 1.3 UI/UX design [Work Package] -> covers R4
+2 Core Modules [Deliverable]
+  ├── 2.1 Database implementation [Work Package] -> covers R6
+  ├── 2.2 Appointment and scheduling module [Work Package] -> covers R1
+  ├── 2.3 Patient records and lab reports module [Work Package] -> covers R2
+  ├── 2.4 Billing and online consultation module [Work Package] -> covers R5
+  └── 2.5 Frontend portals [Work Package] -> covers R3
+3 Integration and Delivery [Deliverable]
+  ├── 3.1 System integration [Work Package] -> covers R6
+  ├── 3.2 System testing and QA [Work Package] -> covers R1
+  ├── 3.3 UAT and training [Work Package] -> covers R3
+  └── 3.4 Deployment and handover [Work Package] -> covers R6
+      </pre>
+
+      <ul class="checkmark-list">
+        <li>Cyclic parent assignments and work packages holding child elements are programmatically prevented by validation rules.</li>
+      </ul>
+    </div>
+    <div class="page-footer">8</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 9: MODULE 2 - CHANGE REQUEST MECHANISM
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h3>Implement a change request mechanism that records proposed changes, justification, cost impact, schedule impact, and approval status.</h3>
+      <ul class="checkmark-list">
+        <li>Change Requests (CRs) allow controlled scope expansion when hospital management introduces new demands.</li>
+        <li><strong>Case Study Scenario:</strong> Hospital management requested:
+          <ol>
+            <li><strong>CR1: AI-based preliminary diagnosis module</strong> (+PKR 500,000, +14 days duration).</li>
+            <li><strong>CR2: Mobile application</strong> (+PKR 300,000, +7 days duration).</li>
+          </ol>
+        </li>
+        <li>Combined impact equals exactly <strong>+PKR 800,000</strong> cost increase and <strong>+21 days (3 weeks)</strong> duration increase, matching the case study specification.</li>
+      </ul>
+
+      <div class="figure-box">
+        <img src="report_assets/scope_change_requests.png" alt="Change Request Management">
+        <div class="figure-caption">Figure 2.2: Change Requests table showing proposed changes, justification, cost & schedule impacts, and action buttons.</div>
+      </div>
+    </div>
+    <div class="page-footer">9</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 10: MODULE 2 - SCOPE ELIGIBILITY & BASELINE UPDATE
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h3>Prevent unapproved requirements from being included in the approved project scope.</h3>
+      <ul class="checkmark-list">
+        <li><strong>Strict Scope Gate:</strong> When creating a WBS work package, the system only allows selecting requirements whose status is <code>Approved</code>. Linking a <code>Proposed</code> requirement triggers an HTTP 409 rejection.</li>
+        <li><strong>Dynamic Baseline Recalculation:</strong> When the Project Manager clicks <strong>Approve</strong> on a Change Request:
+          <ol>
+            <li>The associated requirement (e.g. AI Diagnosis) immediately transitions from <code>Proposed</code> to <code>Approved</code>.</li>
+            <li>New WBS elements (e.g. <code>CR-1</code> and work package <code>CR-1.1</code>) are created automatically.</li>
+            <li>A new implementation activity is created and linked into the dependency network.</li>
+            <li>The effective project budget updates automatically (PKR 5,000,000 -> PKR 5,500,000).</li>
+            <li>The project deadline automatically extends (+14 days), and EVM baselines recalculate.</li>
+          </ol>
+        </li>
+      </ul>
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Change Request</th>
+            <th>Cost Impact</th>
+            <th>Schedule Impact</th>
+            <th>Baseline After Approval</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline (Initial)</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Budget: PKR 5,000,000 | Deadline: 2026-12-21 (16 wks)</td>
+          </tr>
+          <tr>
+            <td>CR1: AI Preliminary Diagnosis</td>
+            <td>+PKR 500,000</td>
+            <td>+14 days (2 wks)</td>
+            <td>Budget: PKR 5,500,000 | Deadline: 2027-01-04 (18 wks)</td>
+          </tr>
+          <tr>
+            <td>CR2: Mobile Application</td>
+            <td>+PKR 300,000</td>
+            <td>+7 days (1 wk)</td>
+            <td>Budget: PKR 5,800,000 | Deadline: 2027-01-11 (19 wks)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="page-footer">10</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 11: MODULE 3 - SCHEDULE & RESOURCE MANAGEMENT
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h2>3. Schedule and Resource Management (5 Marks)</h2>
+      <h3>Define project activities, assign team members, estimate durations, and specify task dependencies.</h3>
+      <ul class="checkmark-list">
+        <li>12 baseline activities span the 16-week project lifecycle, linked directly to WBS work packages.</li>
+        <li>Each activity defines: activity name, team assignee, estimated duration in days, predecessor dependencies, planned cost, and percentage completion.</li>
+        <li><strong>Circular Dependency Prevention:</strong> The engine executes a Topological Sort algorithm on activity dependencies. If a user introduces a cycle (A -> B -> A), the system detects it and aborts with: <code>Circular dependency detected</code>.</li>
+      </ul>
+
+      <div class="figure-box">
+        <img src="report_assets/schedule_activities.png" alt="Activities Register">
+        <div class="figure-caption">Figure 3.1: Activities Register with duration estimates, assignees, predecessor dependencies, and progress tracking.</div>
+      </div>
+    </div>
+    <div class="page-footer">11</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 12: MODULE 3 - CRITICAL PATH METHOD (CPM)
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h3>Generate a project schedule using activity start dates, end dates, and dependency relationships.</h3>
+      <p>
+        The backend <code>calc.js</code> executes a programmatic Critical Path Method (CPM) calculation:
+      </p>
+      <ul class="checkmark-list">
+        <li><strong>Forward Pass:</strong> Computes Early Start ($ES$) and Early Finish ($EF$):
+          $$ES_i = \max_{p \in Pred(i)}(EF_p), \quad EF_i = ES_i + Duration_i$$
+        </li>
+        <li><strong>Backward Pass:</strong> Computes Late Finish ($LF$) and Late Start ($LS$):
+          $$LF_i = \min_{s \in Succ(i)}(LS_s), \quad LS_i = LF_i - Duration_i$$
+        </li>
+        <li><strong>Total Float (Slack):</strong> $Slack_i = LS_i - ES_i$. Activities with $Slack = 0$ constitute the <strong>Critical Path</strong>.</li>
+        <li><strong>Identified Critical Path Activities:</strong>
+          Requirements Analysis (A1) &rarr; System & Database Design (A2) &rarr; Database Implementation (A4) &rarr; Appointment Module (A5) &rarr; Billing Module (A7) &rarr; System Integration (A9) &rarr; Testing & QA (A10) &rarr; UAT (A11) &rarr; Handover (A12).
+        </li>
+      </ul>
+
+      <h3>Identify delayed activities and calculate their impact on dependent tasks and deadline.</h3>
+      <ul class="checkmark-list">
+        <li><strong>Case Study Delay:</strong> Activity A5 (Appointment & Scheduling Module) is delayed: at status date (2026-10-26), it is only 70% complete instead of 100%, causing a 7-day slip.</li>
+        <li>The engine automatically shifts downstream dependent tasks (Billing, Integration, Testing, UAT, Handover), pushing projected finish from 2026-12-21 to <strong>2026-12-23 (2 days past deadline)</strong>.</li>
+      </ul>
+    </div>
+    <div class="page-footer">12</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 13: MODULE 3 - GANTT CHART & MILESTONE TIMELINE
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h3>Display project milestones and schedule status through a Gantt-style chart.</h3>
+      <ul class="checkmark-list">
+        <li>The interactive Gantt chart renders planned schedule baselines (grey bars) against forecast progress (colored bars).</li>
+        <li>Color-coded bars indicate status: <strong>Teal</strong> = Critical path, <strong>Amber</strong> = Impacted by predecessor, <strong>Red</strong> = Delayed.</li>
+        <li>Milestones are plotted as diamonds (&diams;); completed milestones display in teal and upcoming milestones in amber.</li>
+        <li>Vertical guidelines display the <strong>current status date</strong> (dashed teal line) and <strong>project deadline</strong> (dashed red line).</li>
+      </ul>
+
+      <div class="figure-box">
+        <img src="report_assets/schedule_gantt.png" alt="Gantt Chart and Schedule Table">
+        <div class="figure-caption">Figure 3.2: Graphical Gantt Chart displaying critical path, delays, milestone diamonds, status/deadline lines, and visual legend.</div>
+      </div>
+    </div>
+    <div class="page-footer">13</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 14: MODULE 4 - COST MANAGEMENT & EVM
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h2>4. Cost Management and Earned Value Analysis (5 Marks)</h2>
+      <h3>Estimate activity costs and calculate the total planned project budget.</h3>
+      <ul class="checkmark-list">
+        <li>Each activity is assigned a bottom-up estimated planned cost. Total planned cost equals the Budget at Completion ($BAC = \text{PKR } 5,000,000$).</li>
+        <li>Actual expenditures ($AC$) are recorded per activity as invoices and developer hours are processed.</li>
+      </ul>
+
+      <h3>Implement Earned Value Management (EVM) Indicators:</h3>
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>EVM Indicator</th>
+            <th>Formula</th>
+            <th>Case Study Value</th>
+            <th>Interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Planned Value (PV)</strong></td>
+            <td>$\sum (BAC_i \times \% \text{Sched}_i)$</td>
+            <td>PKR 3,195,333</td>
+            <td>Value of work planned to be completed by Oct 26 status date.</td>
+          </tr>
+          <tr>
+            <td><strong>Earned Value (EV)</strong></td>
+            <td>$\sum (BAC_i \times \% \text{Complete}_i)$</td>
+            <td>PKR 2,815,000</td>
+            <td>Budgeted value of work physically accomplished.</td>
+          </tr>
+          <tr>
+            <td><strong>Actual Cost (AC)</strong></td>
+            <td>$\sum \text{Actual Cost}_i$</td>
+            <td>PKR 3,610,000</td>
+            <td>Actual money spent to date on activities.</td>
+          </tr>
+          <tr>
+            <td><strong>Cost Performance Index (CPI)</strong></td>
+            <td>$EV / AC$</td>
+            <td><strong>0.78</strong></td>
+            <td><strong>Severe cost overrun:</strong> Project yields PKR 0.78 value per PKR 1.00 spent.</td>
+          </tr>
+          <tr>
+            <td><strong>Schedule Performance Index (SPI)</strong></td>
+            <td>$EV / PV$</td>
+            <td><strong>0.88</strong></td>
+            <td><strong>Schedule slippage:</strong> Project progresses at 88% of planned schedule rate.</td>
+          </tr>
+          <tr>
+            <td><strong>Cost Variance (CV)</strong></td>
+            <td>$EV - AC$</td>
+            <td>-PKR 795,000</td>
+            <td>Unfavorable cost variance.</td>
+          </tr>
+          <tr>
+            <td><strong>Schedule Variance (SV)</strong></td>
+            <td>$EV - PV$</td>
+            <td>-PKR 380,333</td>
+            <td>Behind schedule.</td>
+          </tr>
+          <tr>
+            <td><strong>Estimate at Completion (EAC)</strong></td>
+            <td>$BAC / CPI$</td>
+            <td>PKR 6,412,078</td>
+            <td>Forecasted total project cost exceeds budget by PKR 1,412,078.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="page-footer">14</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 15: MODULE 4 - EVM THRESHOLD WARNINGS
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h3>Automatically identify cost overruns and schedule deviations with threshold warnings.</h3>
+      <ul class="checkmark-list">
+        <li>The system continuously monitors performance indices against predefined quality thresholds:
+          <ul>
+            <li><strong>Critical Level:</strong> $CPI < 0.8$ or $SPI < 0.8$</li>
+            <li><strong>Warning Level:</strong> $0.8 \le CPI < 0.9$ or $0.8 \le SPI < 0.9$</li>
+          </ul>
+        </li>
+        <li><strong>Generated Warning Messages:</strong>
+          <ul>
+            <li><span style="color:#7d1f2d; font-weight:bold;">[CRITICAL]</span> Cost Performance Index is 0.78 (below 0.8) - serious cost overrun.</li>
+            <li><span style="color:#6b4300; font-weight:bold;">[WARNING]</span> Schedule Performance Index is 0.88 (below 0.9) - schedule slippage trend.</li>
+            <li><span style="color:#6b4300; font-weight:bold;">[WARNING]</span> Forecast at completion PKR 6,412,078 exceeds approved budget by PKR 1,412,078.</li>
+            <li><span style="color:#6b4300; font-weight:bold;">[WARNING]</span> Projected finish 2026-12-23 is 2 day(s) after deadline 2026-12-21.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="figure-box">
+        <img src="report_assets/cost_evm.png" alt="Cost and EVM Dashboard">
+        <div class="figure-caption">Figure 4.1: Cost Management & EVM Dashboard showing PV, EV, AC, CPI, SPI, warnings, and activity expenditure tracker.</div>
+      </div>
+    </div>
+    <div class="page-footer">15</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 16: MODULE 5 - QUALITY MANAGEMENT & DEFECTS
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h2>5. Quality Management and Risk Control (4 Marks)</h2>
+      <h3>Implement a defect tracking module to record defects, severity, assigned personnel, and resolution status.</h3>
+      <ul class="checkmark-list">
+        <li>Defects record: Title, Severity (Critical, High, Medium, Low), Assignee, Resolution Status (Open, In Progress, Resolved, Closed), and Related Activity.</li>
+        <li><strong>Case Study Critical Defects:</strong>
+          <ol>
+            <li><strong>Appointment Scheduling:</strong> <em>Double booking of the same doctor slot</em> (Critical, assigned to Usman Tariq).</li>
+            <li><strong>Patient Records:</strong> <em>Patient record overwritten on concurrent update</em> (Critical, assigned to Bilal Ahmed).</li>
+          </ol>
+        </li>
+      </ul>
+
+      <div class="figure-box">
+        <img src="report_assets/quality_defects.png" alt="Quality Checklist and Defect Log">
+        <div class="figure-caption">Figure 5.1: Quality Checklist & Defect Tracking Log displaying inspection results and critical defects.</div>
+      </div>
+    </div>
+    <div class="page-footer">16</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 17: MODULE 5 - QUALITY CHECKLIST & DEFECT AUTOMATION
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h3>Develop a quality checklist for deliverables and record inspection/testing results.</h3>
+      <ul class="checkmark-list">
+        <li>Checklist items track formal Inspections (e.g. SRS review, ER diagram 3NF check) and Tests (e.g. concurrent load test).</li>
+        <li><strong>Automated Quality-Defect Linkage:</strong> Whenever a checklist item is marked as <code>Fail</code>, the system automatically creates a corresponding Defect in the defect log:
+          <pre class="code-block">Quality Check "No double booking under concurrent load" -> Status: Fail
+Automated Action: Raised Defect "Failed check: No double booking under concurrent load" (Severity: High, Status: Open)</pre>
+        </li>
+        <li>This ensures that failed quality verifications are never lost and remain tracked until fixed.</li>
+      </ul>
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Deliverable</th>
+            <th>Checklist Item</th>
+            <th>Type</th>
+            <th>Result</th>
+            <th>Inspector</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1.1 Requirements</td><td>SRS reviewed and signed by sponsor</td><td>Inspection</td><td>Pass</td><td>Omar Farooq</td></tr>
+          <tr><td>1.2 System Design</td><td>ER diagram normalised to 3NF</td><td>Inspection</td><td>Pass</td><td>Omar Farooq</td></tr>
+          <tr><td>2.2 Appointments</td><td>No double booking under concurrent load</td><td>Test</td><td>Fail</td><td>Omar Farooq</td></tr>
+          <tr><td>2.3 Patient Records</td><td>Patient record update keeps last valid version</td><td>Test</td><td>Fail</td><td>Omar Farooq</td></tr>
+          <tr><td>2.5 Portals</td><td>Portals pass responsive check</td><td>Inspection</td><td>Pending</td><td>Omar Farooq</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="page-footer">17</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 18: MODULE 5 - RISK PRIORITIZATION MATRIX
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h3>Implement a Prioritization Matrix to rank project risks based on likelihood and impact.</h3>
+      <ul class="checkmark-list">
+        <li>Risks are evaluated using a 5&times;5 matrix: Likelihood (1 to 5) &times; Impact (1 to 5).</li>
+        <li>$Risk Score = Likelihood \times Impact$ (Range: 1 to 25).</li>
+        <li>Severity Levels:
+          <ul>
+            <li><strong>Critical (Score 15–25):</strong> Red zone &bull; Immediate mitigation mandatory.</li>
+            <li><strong>High (Score 10–14):</strong> Amber zone &bull; Active weekly monitoring.</li>
+            <li><strong>Medium (Score 5–9):</strong> Yellow zone &bull; Standard controls.</li>
+            <li><strong>Low (Score 1–4):</strong> Green zone &bull; Acceptable risk.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="figure-box">
+        <img src="report_assets/risks_top.png" alt="Prioritization Matrix and Ranked Risks">
+        <div class="figure-caption">Figure 5.2: 5x5 Likelihood x Impact Prioritization Matrix and Ranked Risk Register.</div>
+      </div>
+    </div>
+    <div class="page-footer">18</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 19: MODULE 5 - PROCESS DECISION PROGRAM CHART (PDPC)
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h3>Generate a Process Decision Program Chart (PDPC) showing potential problems and preventive/corrective actions.</h3>
+      <ul class="checkmark-list">
+        <li>The PDPC provides a structured contingency plan mapping each critical risk to its preventive and corrective measures.</li>
+        <li><strong>Goal:</strong> Deliver the healthcare system across five hospitals on time, on budget, and defect-free.</li>
+      </ul>
+
+      <div class="figure-box">
+        <img src="report_assets/risks_pdpc.png" alt="Process Decision Program Chart">
+        <div class="figure-caption">Figure 5.3: Process Decision Program Chart (PDPC) grid showing preventive and corrective contingency pathways.</div>
+      </div>
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Risk Event</th>
+            <th>Score / Level</th>
+            <th>&darr; Preventive Action</th>
+            <th>&darr; Corrective Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>R1: Scope creep from hospital management</strong></td>
+            <td>20 (Critical)</td>
+            <td>Formal change control, sponsor sign-off.</td>
+            <td>Re-baseline budget and schedule via approved change request.</td>
+          </tr>
+          <tr>
+            <td><strong>R2: Critical defects in scheduling and records</strong></td>
+            <td>20 (Critical)</td>
+            <td>Concurrency tests in CI, peer code reviews.</td>
+            <td>Defect swarm, freeze non-essential feature development.</td>
+          </tr>
+          <tr>
+            <td><strong>R3: Cost overrun on backend work</strong></td>
+            <td>12 (High)</td>
+            <td>Weekly EVM tracking, daily standups.</td>
+            <td>Reassign developer effort, descope optional features.</td>
+          </tr>
+          <tr>
+            <td><strong>R4: Data migration errors across 5 hospitals</strong></td>
+            <td>12 (High)</td>
+            <td>Dry-run mock migrations with staging datasets.</td>
+            <td>Automated rollback scripts and manual reconciliation.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="page-footer">19</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 20: MODULE 6 - PROJECT CONTROL ROOM DASHBOARD
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h2>6. System Integration, Validation, and Reporting (3 Marks)</h2>
+      <h3>Integrate all modules into one functional application using a database.</h3>
+      <ul class="checkmark-list">
+        <li>All 6 project management domains are integrated into a single full-stack MERN application (React 18 frontend + Node/Express REST API + MongoDB persistence).</li>
+        <li>Calculations run automatically on the server: updating an activity's completion immediately recalculates EVM indicators, CPM critical path, and dashboard warnings.</li>
+      </ul>
+
+      <h3>Project Control Room Dashboard Overview:</h3>
+      <div class="figure-box">
+        <img src="report_assets/dashboard_tab.png" alt="Project Control Room Dashboard">
+        <div class="figure-caption">Figure 6.1: Executive Dashboard displaying overall progress, CPI/SPI, budget forecast, delayed activities, and critical defects.</div>
+      </div>
+    </div>
+    <div class="page-footer">20</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 21: MODULE 6 - CROSS-MODULE VALIDATION & DATA CONSISTENCY
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h3>Validate user inputs and maintain consistency between requirements, tasks, costs, change requests, and quality records.</h3>
+      <ul class="checkmark-list">
+        <li><strong>Referential Integrity:</strong> Deleting an approved requirement is prohibited if it is linked to active WBS work packages or change requests.</li>
+        <li><strong>Role-Based Assignment:</strong> Activities and defects cannot be assigned to arbitrary names; assignees must exist in the Project Charter's responsibility list.</li>
+        <li><strong>Read-Only Decision State:</strong> Once a Change Request is decided (Approved/Rejected), its cost and schedule impacts are locked to prevent retroactive tampering.</li>
+        <li><strong>Defect-Closure Enforcement:</strong> Marking a defect as <code>In Progress</code> or <code>Resolved</code> requires an assigned owner.</li>
+      </ul>
+
+      <h2>Database Schema & Data Model (MongoDB / Mongoose)</h2>
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Collection</th>
+            <th>Primary Fields</th>
+            <th>Relationships & Constraints</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>projects</code></td>
+            <td>name, approvedBudget, startDate, deadline, statusDate, status, plan, milestones, responsibilities, closure</td>
+            <td>Single document root for project charter, baseline budget, and management plan.</td>
+          </tr>
+          <tr>
+            <td><code>requirements</code></td>
+            <td>title, description, priority, status (Proposed/Approved/Rejected)</td>
+            <td>Referenced by WBS work packages. Unapproved requirements rejected from scope.</td>
+          </tr>
+          <tr>
+            <td><code>wbs</code></td>
+            <td>code, name, type (Deliverable/Work Package), parent, requirement</td>
+            <td>Recursive parent-child tree. Work packages must point to approved requirements.</td>
+          </tr>
+          <tr>
+            <td><code>activities</code></td>
+            <td>name, wbs, assignee, durationDays, plannedCost, percentComplete, actualCost, dependencies</td>
+            <td>Linked to WBS. Dependencies validated for acyclicity using Topological Sort.</td>
+          </tr>
+          <tr>
+            <td><code>changerequests</code></td>
+            <td>title, justification, costImpact, scheduleImpactDays, status, resultingActivity</td>
+            <td>Approval triggers requirement approval, WBS generation, and budget extension.</td>
+          </tr>
+          <tr>
+            <td><code>defects</code></td>
+            <td>title, severity, status, assignee, activity, qualityCheck, description</td>
+            <td>Assigned to team members. Open critical defects block project closure.</td>
+          </tr>
+          <tr>
+            <td><code>qualitychecks</code></td>
+            <td>deliverable, item, kind, status (Pass/Fail/Pending), inspector, defect</td>
+            <td>Inspection records. Status 'Fail' automatically instantiates a defect.</td>
+          </tr>
+          <tr>
+            <td><code>risks</code></td>
+            <td>title, likelihood (1-5), impact (1-5), owner, preventive, corrective</td>
+            <td>Computed score and level. Feeds Prioritization Matrix and PDPC view.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="page-footer">21</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 22: AUTOMATED TEST SUITE & VALIDATION PROOF
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h2>Automated Test Cases & Calculation Verification</h2>
+      <p>
+        The calculation engine is backed by an automated test suite (<code>npm test</code>) containing 12 unit tests that verify schedule math, EVM indicators, dependency cycle detection, and baseline adjustments:
+      </p>
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th style="width: 10%;">Test ID</th>
+            <th style="width: 35%;">Scenario Tested</th>
+            <th>Expected Result</th>
+            <th style="width: 12%;">Actual Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>TC-01</td><td>CPM simple network: A(5) &rarr; B(3), A &rarr; C(4)</td><td>Finish day 9, critical path A &rarr; C, slack B = 1</td><td style="color:green; font-weight:bold;">Pass</td></tr>
+          <tr><td>TC-02</td><td>Circular dependency detection (A &rarr; B &rarr; A)</td><td>Error: "Circular dependency detected"</td><td style="color:green; font-weight:bold;">Pass</td></tr>
+          <tr><td>TC-03</td><td>Dependency on a non-existent activity</td><td>Error: "Activity depends on activity that does not exist"</td><td style="color:green; font-weight:bold;">Pass</td></tr>
+          <tr><td>TC-04</td><td>Case-study baseline plan (12 activities)</td><td>107-day plan, BAC = PKR 5,000,000</td><td style="color:green; font-weight:bold;">Pass</td></tr>
+          <tr><td>TC-05</td><td>Appointment module delay propagation</td><td>Status Delayed (+7d), pushes finish past deadline</td><td style="color:green; font-weight:bold;">Pass</td></tr>
+          <tr><td>TC-06</td><td>EVM computations on case-study data</td><td>PV ~3.19M, EV 2.815M, AC 3.61M, CPI 0.78, SPI 0.88</td><td style="color:green; font-weight:bold;">Pass</td></tr>
+          <tr><td>TC-07</td><td>Threshold warning messages generation</td><td>CPI Critical warning, SPI warning, EAC warning present</td><td style="color:green; font-weight:bold;">Pass</td></tr>
+          <tr><td>TC-08</td><td>Healthy project threshold check</td><td>CPI = SPI = 1.00, zero warning messages</td><td style="color:green; font-weight:bold;">Pass</td></tr>
+          <tr><td>TC-09</td><td>Budget overrun detection</td><td>Planned cost > approved budget flags critical warning</td><td style="color:green; font-weight:bold;">Pass</td></tr>
+          <tr><td>TC-10</td><td>Change requests approval math</td><td>Budget becomes PKR 5.8M (+800k), deadline +21 days</td><td style="color:green; font-weight:bold;">Pass</td></tr>
+          <tr><td>TC-11</td><td>Risk scoring and prioritization formula</td><td>Score 20 = Critical, Score 12 = High, Score 6 = Medium</td><td style="color:green; font-weight:bold;">Pass</td></tr>
+          <tr><td>TC-12</td><td>Late completion status categorization</td><td>Activities finished past plan marked "Completed Late"</td><td style="color:green; font-weight:bold;">Pass</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="page-footer">22</div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 23: CONCLUSION & SUMMARY
+       ========================================================================= -->
+  <div class="page">
+    <div class="page-header">MIDTERM LAB</div>
+    <div class="page-content">
+      <h2>Conclusion and System Compliance Summary</h2>
+      <p>
+        The developed <strong>Smart Healthcare Project Management and Monitoring System</strong> successfully demonstrates all state-of-the-art software project management principles and techniques stipulated in CLO-6 for the CSE-494 Midterm Examination:
+      </p>
+      <ul class="checkmark-list">
+        <li><strong>Full-Stack Architecture:</strong> Built using a scalable MERN stack (MongoDB, Express, React, Node.js) with real-time reactive updates and MongoDB persistence.</li>
+        <li><strong>Algorithmic Integrity:</strong> Pure programmatic computation for CPM scheduling, forward/backward pass, total float, and EVM performance indices without reliance on mock interfaces.</li>
+        <li><strong>Comprehensive Scope Control:</strong> Robust Change Request mechanism demonstrating the exact impact of approved hospital management additions (+PKR 800,000, +21 days) on schedule and budget baselines.</li>
+        <li><strong>Quality and Risk Resilience:</strong> Automated defect creation from failed quality checks, 5&times;5 Prioritization Matrix, and structured PDPC contingency plans.</li>
+        <li><strong>Executive Reporting:</strong> Clean Project Control Room Dashboard with threshold alerts and printable project status summaries.</li>
+      </ul>
+
+      <div style="margin-top: 40px; padding: 14px; border: 1.5px solid #14303a; background: #f7faf9; border-radius: 4px; text-align: center;">
+        <h3 style="margin-bottom: 4px; color: #14303a;">COMSATS UNIVERSITY ISLAMABAD, SAHIWAL CAMPUS</h3>
+        <p style="margin-bottom: 2px; font-weight: bold;">Department of Computer Sciences &bull; Fall-2026 Examination</p>
+        <p style="font-size: 13px; margin: 0;">Course: CSE-494 Software Project Management | Instructor: Mr. Bilal Shabbir Qaisar</p>
+      </div>
+    </div>
+    <div class="page-footer">23</div>
+  </div>
+
+  <script>
+    // Live synchronization between toolbar inputs and cover page credentials
+    const inpName = document.getElementById('inp-name');
+    const inpReg = document.getElementById('inp-reg');
+    const inpSec = document.getElementById('inp-sec');
+    const inpDate = document.getElementById('inp-date');
+
+    const dispName = document.getElementById('disp-name');
+    const dispReg = document.getElementById('disp-reg');
+    const dispSec = document.getElementById('disp-sec');
+    const dispDate = document.getElementById('disp-date');
+
+    inpName.addEventListener('input', (e) => {
+      dispName.textContent = e.target.value.trim().toUpperCase() + '.';
+    });
+    inpReg.addEventListener('input', (e) => {
+      dispReg.textContent = e.target.value.trim().toUpperCase() + '.';
+    });
+    inpSec.addEventListener('input', (e) => {
+      dispSec.textContent = e.target.value.trim().toUpperCase() + '.';
+    });
+    inpDate.addEventListener('input', (e) => {
+      dispDate.textContent = e.target.value.trim() + '.';
+    });
+
+    /**
+     * Client-side export to Microsoft Word (.doc) format
+     * Packages the current DOM state (including student inputs) with MS Word XML metadata
+     */
+    function exportToWord() {
+      const pages = document.querySelectorAll('.page');
+      let pagesHtml = '';
+
+      pages.forEach((page, index) => {
+        // Clone page node to sanitize if needed
+        const clone = page.cloneNode(true);
+        pagesHtml += `<div class="word-page">${clone.innerHTML}</div>`;
+        if (index < pages.length - 1) {
+          pagesHtml += '<br clear="all" style="page-break-before:always; mso-break-type:section-break" />';
+        }
+      });
+
+      const wordTemplate = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office'
+              xmlns:w='urn:schemas-microsoft-com:office:word'
+              xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+          <meta charset='utf-8'>
+          <title>Midterm Lab Report - Smart Healthcare PMS</title>
+          <!--[if gte mso 9]>
+          <xml>
+            <w:WordDocument>
+              <w:View>Print</w:View>
+              <w:Zoom>100</w:Zoom>
+              <w:DoNotOptimizeForBrowser/>
+            </w:WordDocument>
+          </xml>
+          <![endif]-->
+          <style>
+            @page Section1 {
+              size: 595.3pt 841.9pt; /* A4 */
+              margin: 36pt 36pt 36pt 36pt;
+              mso-header-margin: 18pt;
+              mso-footer-margin: 18pt;
+              mso-paper-source: 0;
+            }
+            div.Section1 {
+              page: Section1;
+            }
+            body {
+              font-family: 'Times New Roman', Georgia, serif;
+              font-size: 11pt;
+              line-height: 1.35;
+              color: #111;
+            }
+            .word-page {
+              border: 3pt double #111;
+              padding: 16pt;
+              margin-bottom: 24pt;
+              min-height: 700pt;
+            }
+            .page-header {
+              text-align: center;
+              font-size: 10pt;
+              font-weight: bold;
+              border-bottom: 1pt solid #ccc;
+              padding-bottom: 4pt;
+              margin-bottom: 10pt;
+              text-transform: uppercase;
+              letter-spacing: 0.5pt;
+            }
+            .page-footer {
+              text-align: right;
+              font-size: 10pt;
+              font-weight: bold;
+              margin-top: 14pt;
+            }
+            table.report-table {
+              width: 100%;
+              border-collapse: collapse;
+              margin: 8pt 0;
+              font-size: 10pt;
+            }
+            table.report-table th, table.report-table td {
+              border: 1pt solid #444;
+              padding: 4.5pt 6pt;
+              vertical-align: top;
+            }
+            table.report-table th {
+              background: #f0f3f5;
+              font-weight: bold;
+            }
+            h1 { font-size: 16pt; text-align: center; margin-bottom: 6pt; }
+            h2 { font-size: 13pt; border-bottom: 1.5pt solid #222; padding-bottom: 3pt; margin-top: 10pt; }
+            h3 { font-size: 11pt; margin-top: 8pt; }
+            .badge { display: inline-block; padding: 2pt 5pt; font-size: 9pt; font-weight: bold; }
+            .badge-pass { background: #e6f7ed; color: #15803d; }
+            .figure-box { text-align: center; margin: 8pt 0; }
+            .figure-box img { max-width: 100%; height: auto; }
+            .figure-caption { font-size: 9.5pt; font-weight: bold; margin-top: 3pt; color: #333; }
+            pre.code-block { background: #f4f6f8; border: 1pt solid #ccc; padding: 6pt; font-family: 'Consolas', monospace; font-size: 8.5pt; }
+            ul.checkmark-list { list-style-type: square; padding-left: 20pt; }
+          </style>
+        </head>
+        <body>
+          <div class="Section1">
+            ${pagesHtml}
+          </div>
+        </body>
+        </html>
+      `;
+
+      const blob = new Blob(['\ufeff', wordTemplate], {
+        type: 'application/msword;charset=utf-8'
+      });
+
+      const filename = `MIDTERM_LAB_REPORT_${(inpName.value || 'Student').trim().replace(/\\s+/g, '_')}.doc`;
+      const url = URL.createObjectURL(blob);
+      const downloadLink = document.createElement('a');
+      downloadLink.href = url;
+      downloadLink.download = filename;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
+    }
+  </script>
+</body>
+</html>
