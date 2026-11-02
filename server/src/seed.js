@@ -17,7 +17,7 @@ export async function seed() {
   for (const q of D.checks) await M.QualityCheck.create({ ...q, deliverable: w[q.wbs]._id });
   for (const r of D.risks) await M.Risk.create(r);
 }
-if (process.argv[1].endsWith('seed.js')) {
+if (process.argv[1]?.endsWith('seed.js')) {
   await mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/spms');
   await seed(); console.log('Sample data loaded.'); await mongoose.disconnect();
 }

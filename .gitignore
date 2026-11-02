@@ -17,6 +17,7 @@ build/
 client/dist/
 client/build/
 *.local
+.vercel/
 
 # Logs
 logs/
